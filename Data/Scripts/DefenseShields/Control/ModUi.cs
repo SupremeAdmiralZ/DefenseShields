@@ -71,7 +71,7 @@ namespace DefenseShields
         internal static void SetDamage(IMyTerminalBlock block, float newValue)
         {
             var comp = block?.GameLogic?.GetAs<Modulators>();
-            if (comp == null || newValue > 200 || newValue < -200) return;
+            if (comp == null || newValue > Session.Enforced.MaxModulation || newValue < -Session.Enforced.MaxModulation) return;
 
             if (Session.Instance.IsServer) 
                 ComputeDamage(comp, newValue);
