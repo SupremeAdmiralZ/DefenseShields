@@ -32,7 +32,7 @@ namespace DefenseShields.Support
             const int DisableEntityBarrier = 0;
             const int Debug = 1;
             const int SuperWeapons = 1;
-            const int Version = 92;
+            const int Version = 93;
             const float BlockScaler = 1f;
             const float PowerScaler = 1f;
             const float SizeScaler = 7.5f;
@@ -46,6 +46,9 @@ namespace DefenseShields.Support
             const float MinHP = 0f;
             const float MaxRecharge = float.MaxValue;
             const float MinRecharge = 0f;
+            const float ShuntBonusResistance = 0.16f;
+            const float ShuntPenResistance = 0.2f;
+            const float MaxModulation = 200f;
 
             var dsCfgExists = MyAPIGateway.Utilities.FileExistsInGlobalStorage("DefenseShields.cfg");
             if (dsCfgExists)
@@ -92,6 +95,15 @@ namespace DefenseShields.Support
                 Session.Enforced.MinHP = !unPackedData.MinHP.Equals(-1) ? unPackedData.MinHP : MinHP;
                 Session.Enforced.MaxRecharge = !unPackedData.MaxRecharge.Equals(-1) ? unPackedData.MaxRecharge : MaxRecharge;
                 Session.Enforced.MinRecharge = !unPackedData.MinRecharge.Equals(-1) ? unPackedData.MinRecharge : MinRecharge;
+                Session.Enforced.ShuntBonusResistance = !unPackedData.ShuntBonusResistance.Equals(-1f) ? unPackedData.ShuntBonusResistance : ShuntBonusResistance;
+                Session.Enforced.ShuntPenResistance = !unPackedData.ShuntPenResistance.Equals(-1f) ? unPackedData.ShuntPenResistance : ShuntPenResistance;
+                Session.Enforced.MaxModulation = !unPackedData.MaxModulation.Equals(-1f) ? unPackedData.MaxModulation : MaxModulation;
+
+                if (unPackedData.Version < 93)
+                {
+                    Session.Enforced.ShuntBonusResistance = ShuntBonusResistance;
+                    Session.Enforced.ShuntPenResistance = ShuntPenResistance;
+                    Session.Enforced.MaxModulation = MaxModulation;
 
                 if (unPackedData.Version < 92)
                 {
