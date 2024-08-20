@@ -166,7 +166,10 @@ namespace DefenseShields.Support
                 Session.Enforced.MinHP = MinHP;
                 Session.Enforced.MaxRecharge = MaxRecharge;
                 Session.Enforced.MinRecharge = MinRecharge;
-
+                Session.Enforced.ShuntBonusResistance = ShuntBonusResistance;
+                Session.Enforced.ShuntPenResistance = ShuntPenResistance;
+                Session.Enforced.MaxModulation = MaxModulation;
+                
                 WriteNewConfigFile();
 
                 Log.Line($"wrote new config file - file exists: {MyAPIGateway.Utilities.FileExistsInGlobalStorage("DefenseShields.cfg")}");
