@@ -376,8 +376,8 @@ namespace DefenseShields
 
             var hitShuntedSide = shuntedFaceHit != -1;
             var shuntedFaces = Math.Abs(logic.ShieldRedirectState.X) + Math.Abs(logic.ShieldRedirectState.Y) + Math.Abs(logic.ShieldRedirectState.Z);
-            var shuntMod = !hitShuntedSide ? 1 - (shuntedFaces * Session.ShieldShuntBonus) : logic.DsSet.Settings.AutoManage ? 1 - Session.ShieldShuntBonus : 1f;
-            var preventBypassMod = MathHelper.Clamp(shuntedFaces * Session.ShieldBypassBonus, 0f, 1f);
+            var shuntMod = !hitShuntedSide ? 1 - (shuntedFaces * Session.Enforced.ShuntBonusResistance) : logic.DsSet.Settings.AutoManage ? 1 - Session.Enforced.ShuntBonusResistance : 1f;
+            var preventBypassMod = MathHelper.Clamp(shuntedFaces * Session.Enforced.ShuntPenResistance, 0f, 1f);
 
             var reinforcedPercent = hitShuntedSide ? logic.DsState.State.ShieldPercent + (shuntedFaces * 8) : logic.DsState.State.ShieldPercent;
             var heatedEnforcedPercent = reinforcedPercent / (1 + (logic.DsState.State.Heat * 0.005));
@@ -408,7 +408,7 @@ namespace DefenseShields
                 penChance = (float)((a * Math.Pow(x, 2)) + (b * x) + c);
             }
 
-            return new MyTuple<bool, int, int, float, float, float>(false, 0, 0, logic.DsSet.Settings.AutoManage ? 1 - Session.ShieldShuntBonus : 1f, 0, penChance);
+            return new MyTuple<bool, int, int, float, float, float>(false, 0, 0, logic.DsSet.Settings.AutoManage ? 1 - Session.Enforced.ShuntBonusResistance : 1f, 0, penChance);
         }
 
         private static float? TAPI_PointAttackShieldCon(IMyTerminalBlock block, Vector3D pos, long attackerId, float damage, float secondaryDamage, bool energy, bool drawParticle, bool posMustBeInside = false) //inlined for performance
