@@ -33,6 +33,9 @@
         [ProtoMember(23), DefaultValue(-1)] public float MinHP = -1f;
         [ProtoMember(24), DefaultValue(-1)] public float MaxRecharge = -1f;
         [ProtoMember(25), DefaultValue(-1)] public float MinRecharge = -1f;
+        [ProtoMember(26), DefaultValue(-1)] public float ShuntBonusResistance = -1f;
+        [ProtoMember(27), DefaultValue(-1)] public float ShuntPenResistance = -1f;
+        [ProtoMember(28), DefaultValue(-1)] public float MaxModulation = -1f;
     }
 
     [ProtoContract]
