@@ -104,6 +104,7 @@ namespace DefenseShields.Support
                     Session.Enforced.ShuntBonusResistance = ShuntBonusResistance;
                     Session.Enforced.ShuntPenResistance = ShuntPenResistance;
                     Session.Enforced.MaxModulation = MaxModulation;
+                }
 
                 if (unPackedData.Version < 92)
                 {
